@@ -16,10 +16,10 @@ def inserisci(data, animale, peso, luogo):
 
 def visualizza():
 	for data in entrate:
-		print"Data" + data
-		print"Tipo di animale" + str(entrate[data].animale)
-		print"Peso" + str(entrate[data].peso)
-		print"luogo" + entrate[data].luogo
+		print"Data: " + data
+		print"Tipo di animale: " + str(entrate[data].animale)
+		print"Peso: " + str(entrate[data].peso)
+		print"Luogo: " + entrate[data].luogo
 
 
 def rimuovi(data):
