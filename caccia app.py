@@ -1,20 +1,21 @@
+import re
+
 class Entrata:
-	def __init__(self, data, animale, peso, luogo):
+	def __init__(self, animale, peso, luogo):
 		self.animale = animale
 		self.peso = peso
 		self.luogo = luogo
 
 
-entrate = {
-	"1/1/10" : Entrata("Cervo", 10, 9, "Trento")
-}
-
+entrate = {}
 
 def inserisci(data, animale, peso, luogo):
-	entrate[data] = Entrata(animale, peso, lunghezza)
+	if dataValida(data):
+		entrate[data] = Entrata(animale, peso, luogo)
 
 
-def visualizza():
+
+def visualizza():             
 	for data in entrate:
 		print"Data: " + data
 		print"Tipo di animale: " + str(entrate[data].animale)
@@ -25,6 +26,16 @@ def visualizza():
 def rimuovi(data):
 	del entrate[data]
 
+
+def dataValida(data):
+	
+	if re.match("^[\w]*$", data):
+		return False
+
+	if data[2] != "/" or data[5] != "/":
+		return False
+
+	return True
 
 print "Cosa hai cacciato oggi Lorenzo"
 while True:
@@ -44,18 +55,15 @@ while True:
 
 
 	if operazione == 2: 
-		data = raw_input("insrire la data: ")
+		data = raw_input("inserire la data: ")
+		if not dataValida(data):
+			print "data non e valida"
+			continue
 		animale = raw_input("inserire l'animale cacciato: ")
 		peso = raw_input("inserire il peso dell'animale: ")
 		luogo = raw_input("inserisci il luogo dove hai caccito l'animale:")
-
+		inserisci(data, animale, peso, luogo)
 
 	if operazione == 3:
 		data = raw_input("inserire la data: ")
-		eliminare(data)
-
-
-
-
-
-
+		rimuovi(data)
